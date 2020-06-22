@@ -1,12 +1,13 @@
 import os
 import csv
+import sys
 from datetime import datetime
 
 # Description of output messages
-MSG_1 = "\nFinacial Analysis\n{}\nTotal Months:{}\nTotal:{}"
+MSG_1 = "\nFinacial Analysis\n{}\nTotal Months: {}\nTotal: {}"
 MSG_2 = "\nAverage Change: ${}"
-MSG_3 = "Greatest Increase in Profits (${})  Date(YY-MM):{}-{}"
-MSG_4 = "Greatest Decrease in Profits (${}) Date(YY-MM):{}-{}\n{}"
+MSG_3 = "Greatest Increase in Profits (${})  Date(YYYY-MM):{}-{}"
+MSG_4 = "Greatest Decrease in Profits (${}) Date(YYYY-MM):{}-{}\n{}"
 
 def load_data(path, file_name):
     """Load a data set.
@@ -34,12 +35,13 @@ def conversion_data(data_list):
     """Converts string data to date and integer types,
     adds list element with the changes of "Profit/Losses".
     Args:
-        data_list (list): data list for conversion.
+        data_list (list): The data list for conversion.
     Returns:
         conversion_dict:
             key - list (type date) with 1 element date
             values - list (type integer) with 2 elements (profit, change)
     """
+
     # Conversion string into data type
     date_list = [datetime.strptime(data_str[0], '%b-%Y') for data_str in data_list]
     # Conversion string into integer type
@@ -56,17 +58,22 @@ def conversion_data(data_list):
     # Returning dictionary with conversed and added data
     return conversion_dict
 
-def print_plus(print_list):
+def print_plus(print_list, output_file = "None"):
     """Printing data to the terminal.
     Args:
-        data_list (tuple): data list for printing.
+        data_list (tuple):              The data list for printing
+        output_file (string, optional): The name of a txt file.
     """
     #Printing the analysis result to the terminal
-    border = '#' * 60
+    if output_file != "None":
+        sys.stdout = open(output_file, "w")
+    border = '#' * 63
     print(MSG_1.format(border, print_list[0], print_list[1]))
     print(MSG_2.format(print_list[2]))
     print(MSG_3.format(print_list[3], print_list[4].year, print_list[4].month))
     print(MSG_4.format(print_list[5], print_list[6].year, print_list[6].month, border))
+    if output_file != "None":
+        sys.stdout.close()
 
 #Call function load_data for PyBank
 pybank_data = load_data("Resources", "budget_data.csv")
@@ -88,10 +95,12 @@ for key in pybank_conversion:
         min_change = pybank_conversion[key][1]
         min_date = key
 total_months = len(pybank_conversion)
-avg_change = round(total_change/total_months,2)
+avg_change = format(total_change/total_months,'.2f')
 
 #Creating tuple for output data
-print_data = (total_months, total_profit, avg_change, max_change, max_date, min_change, min_date)
+print_data = (total_months, format(total_profit, ',d'), avg_change, format(max_change,',d'), max_date, format(min_change,',d'), min_date)
 
-#Call function print_plus
+#Call function to print summary to the terminal
 print_plus(print_data)
+#Call function to print summary to the text file
+print_plus(print_data, 'summary_analysis.txt')

@@ -1,6 +1,6 @@
 # Python-challenge
 
-Homework Assignment for Data Science and Visualization Boot Camp
+Homework Assignment, Data Science and Visualization Boot Camp (Northwestern University)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/OlegRyzhkov2020/python-challenge)
 ![GitHub top language](https://img.shields.io/github/languages/top/OlegRyzhkov2020/python-challenge)
