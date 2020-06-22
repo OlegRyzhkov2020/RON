@@ -1,0 +1,15 @@
+
+Election Results
+###################################################
+Total Votes: 3,521,001
+###################################################
+
+Candidate Khan: 63.00% Number of voters: 2,218,231
+Candidate Correy: 20.00% Number of voters: 704,200
+Candidate Li: 14.00% Number of voters: 492,940
+Candidate O'Tooley: 3.00% Number of voters: 105,630
+
+###################################################
+Winner: Khan
+###################################################
+

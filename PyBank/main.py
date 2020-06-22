@@ -59,12 +59,12 @@ def conversion_data(data_list):
     return conversion_dict
 
 def print_plus(print_list, output_file = "None"):
-    """Printing data to the terminal.
+    """Printing data to the terminal or text file
     Args:
-        data_list (tuple):              The data list for printing
+        data_list   (tuple):            The data list for printing
         output_file (string, optional): The name of a txt file.
     """
-    #Printing the analysis result to the terminal
+    #Printing summary analysis to the terminal/file depending on the argument
     if output_file != "None":
         sys.stdout = open(output_file, "w")
     border = '#' * 63

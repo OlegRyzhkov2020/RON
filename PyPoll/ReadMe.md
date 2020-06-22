@@ -1,6 +1,6 @@
-# PyBank-challenge
+# PyPoll-challenge
 
-Analysis of the financial records from a given set of financial data called [budget_data.csv] (PyBank/Resources)
+Analysis of the election results from a given set of a data called [election_data.csv] (PyPoll/Resources)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/OlegRyzhkov2020/python-challenge)
 ![GitHub top language](https://img.shields.io/github/languages/top/OlegRyzhkov2020/python-challenge)
@@ -12,17 +12,18 @@ Analysis of the financial records from a given set of financial data called [bud
 
 ## Assignment
 
-The task is to create a Python script that analyzes the records to calculate each of the following:
+The task is to create a Python script that helping a small, rural town modernize its vote counting process by calculating each of the following:
 
-  * The total number of months included in the dataset
+  * The total number of votes cast
 
-  * The net total amount of "Profit/Losses" over the entire period
+  * A complete list of candidates who received votes
 
-  * The average of the changes in "Profit/Losses" over the entire period
+  * The percentage of votes each candidate won
 
-  * The greatest increase in profits (date and amount) over the entire period
+  * The total number of votes each candidate won
 
-  * The greatest decrease in losses (date and amount) over the entire period
+  * The winner of the election based on popular vote.
+
   * In addition, the  final script should both print the analysis to the terminal and export a text file with the results.
 
 ## Summary Analysis Output to the Terminal
