@@ -15,9 +15,7 @@ def load_data(path, file_name):
     Returns:
         data_dict: (dict of rows from CSV file)
     """
-    # Path to collect data
     data_csv = os.path.join(path, file_name)
-    # Opening CSV file
     with open(data_csv, 'r') as csvfile:
         data_reader = csv.reader(csvfile, delimiter=',')
         # Removing header
@@ -26,8 +24,6 @@ def load_data(path, file_name):
         data_list = []
         for row in data_reader:
             data_list.append(row)
-#        data_dict.update({data_dict[row[2]]: [data_dict[row[0]], data_dict[row[1]]]})
-    # Returning list with uploaded dataset
     return data_list
 
 def print_plus(print_list, candidate_dict, output_file = "None"):
@@ -37,7 +33,6 @@ def print_plus(print_list, candidate_dict, output_file = "None"):
         candidate_dict (dict):          The dictionary with candidate summary
         output_file (string, optional): The name of a txt file.
     """
-    #Printing summary analysis to the terminal/file depending on the argument
     if output_file != "None":
         sys.stdout = open(output_file, "w")
     border = '#' * 51

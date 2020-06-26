@@ -17,9 +17,7 @@ def load_data(path, file_name):
     Returns:
         data_list: (list of rows from CSV file)
     """
-    # Path to collect data
     data_csv = os.path.join(path, file_name)
-    # Opening CSV file
     with open(data_csv, 'r') as csvfile:
         data_reader = csv.reader(csvfile, delimiter=',')
         # Removing header
@@ -28,7 +26,6 @@ def load_data(path, file_name):
         data_list = []
         for row in data_reader:
             data_list.append(row)
-    # Returning list with uploaded dataset
     return data_list
 
 def conversion_data(data_list):
@@ -41,21 +38,15 @@ def conversion_data(data_list):
             key - list (type date) with 1 element date
             values - list (type integer) with 2 elements (profit, change)
     """
-
-    # Conversion string into data type
     date_list = [datetime.strptime(data_str[0], '%b-%Y') for data_str in data_list]
-    # Conversion string into integer type
     profit_list = [int(data_str[1]) for data_str in data_list]
-    # Merging 2 lists into a dictionary
     conversion_dict = dict(zip(date_list, profit_list))
-    # Appending changes element to a value for each key of a dictionary
     changes_list = []
     for i in range(len(profit_list)):
         if i == 0 : changes_list.append(0)
         else:
             changes_list.append(profit_list[i] - profit_list[i-1])
         conversion_dict[date_list[i]] = [conversion_dict[date_list[i]], changes_list[i]]
-    # Returning dictionary with conversed and added data
     return conversion_dict
 
 def print_plus(print_list, output_file = "None"):
@@ -64,7 +55,6 @@ def print_plus(print_list, output_file = "None"):
         data_list   (tuple):            The data list for printing
         output_file (string, optional): The name of a txt file.
     """
-    #Printing summary analysis to the terminal/file depending on the argument
     if output_file != "None":
         sys.stdout = open(output_file, "w")
     border = '#' * 63
@@ -95,7 +85,7 @@ for key in pybank_conversion:
         min_change = pybank_conversion[key][1]
         min_date = key
 total_months = len(pybank_conversion)
-avg_change = format(total_change/total_months,'.2f')
+avg_change = format(total_change/(total_months-1),'.2f')
 
 #Creating tuple for output data
 print_data = (total_months, format(total_profit, ',d'), avg_change, format(max_change,',d'), max_date, format(min_change,',d'), min_date)
